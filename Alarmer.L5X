@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--Placeres under maintask-->
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="32.02" TargetName="Alarmer" TargetType="Program" ContainsContext="true" ExportDate="Wed Oct 12 18:01:48 2022" ExportOptions="References NoRawData L5KData DecoratedData Context Dependencies ForceProtectedEncoding AllProjDocTrans">
+<Controller Use="Context" Name="simObli1_rev_1">
+<DataTypes Use="Context">
+</DataTypes>
+<Tags Use="Context">
+<Tag Name="Heat_SP" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0.00000000e+000]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="REAL" Radix="Float" Value="0.0"/>
+</Data>
+</Tag>
+<Tag Name="Temp_Timer" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[[0,10000,0]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="10000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Temp_Toggle_Timer" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="TT_103" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[2.20000019e+001]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="REAL" Radix="Float" Value="22.000002"/>
+</Data>
+</Tag>
+</Tags>
+<Programs Use="Context">
+<Program Use="Target" Name="Alarmer" TestEdits="false" MainRoutineName="Alarm_systemer" Disabled="false" UseAsFolder="false">
+<Tags>
+<Tag Name="ABS_01" TagType="Base" DataType="FBD_MATH_ADVANCED" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[[1,0.00000000e+000,0.00000000e+000]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="FBD_MATH_ADVANCED">
+<DataValueMember Name="EnableIn" DataType="BOOL" Value="1"/>
+<DataValueMember Name="Source" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="EnableOut" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Dest" DataType="REAL" Radix="Float" Value="0.0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="GRT_3deg" TagType="Base" DataType="FBD_COMPARE" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[[1,0.00000000e+000,3.00000000e+000]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="FBD_COMPARE">
+<DataValueMember Name="EnableIn" DataType="BOOL" Value="1"/>
+<DataValueMember Name="SourceA" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="SourceB" DataType="REAL" Radix="Float" Value="3.0"/>
+<DataValueMember Name="EnableOut" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Dest" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="SUB_01" TagType="Base" DataType="FBD_MATH" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[[1,0.00000000e+000,0.00000000e+000,0.00000000e+000]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="FBD_MATH">
+<DataValueMember Name="EnableIn" DataType="BOOL" Value="1"/>
+<DataValueMember Name="SourceA" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="SourceB" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="EnableOut" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Dest" DataType="REAL" Radix="Float" Value="0.0"/>
+</Structure>
+</Data>
+</Tag>
+</Tags>
+<Routines>
+<Routine Name="Alarm_systemer" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment>
+<![CDATA[Hvis den målte temperatur fra TT_103 afviger fra 5 grader i mere end 3 sekunder, startes denne timer. Hvis timeren bliver færdig, skal den aktivere en stop-proces.
+TEST: Resettes timeren, hvis vi når at indregulere hurtigt nok?]]>
+</Comment>
+<Text>
+<![CDATA[XIC(Temp_Toggle_Timer)TON(Temp_Timer,?,?);]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="Temperatur_alarmer" Type="FBD">
+<FBDContent SheetSize="Letter - 8.5 x 11 in" SheetOrientation="Landscape">
+<Sheet Number="1">
+<IRef ID="0" X="100" Y="180" Operand="Heat_SP" HideDesc="false"/>
+<IRef ID="1" X="100" Y="160" Operand="TT_103" HideDesc="false"/>
+<ORef ID="2" X="720" Y="160" Operand="Temp_Toggle_Timer" HideDesc="false"/>
+<Block Type="ABS" ID="3" X="400" Y="100" Operand="ABS_01" VisiblePins="Source Dest" HideDesc="false"/>
+<Block Type="GRT" ID="4" X="560" Y="100" Operand="GRT_3deg" VisiblePins="SourceA Dest" HideDesc="false"/>
+<Block Type="SUB" ID="5" X="220" Y="100" Operand="SUB_01" VisiblePins="SourceA SourceB Dest" HideDesc="false"/>
+<Wire FromID="0" ToID="5" ToParam="SourceB"/>
+<Wire FromID="1" ToID="5" ToParam="SourceA"/>
+<Wire FromID="3" FromParam="Dest" ToID="4" ToParam="SourceA"/>
+<Wire FromID="4" FromParam="Dest" ToID="2"/>
+<Wire FromID="5" FromParam="Dest" ToID="3" ToParam="Source"/>
+<TextBox ID="6" X="480" Y="220" Width="0">
+<Text>
+<![CDATA[Det her bruges til at starte en timer på 10 sekunder, der STOPPER SYSTEMET når den er 
+færdig.]]>
+</Text>
+</TextBox>
+</Sheet>
+</FBDContent>
+</Routine>
+</Routines>
+</Program>
+</Programs>
+</Controller>
+</RSLogix5000Content>
