@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--MainTask - -> MS1_2_Function
+
+Slukker for H1-opvarmer, lukker alle ventiler og slukker kompressoren.-->
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="32.02" TargetName="Shutdown" TargetType="Routine" TargetSubType="ST" ContainsContext="true" ExportDate="Thu Oct 13 18:43:49 2022" ExportOptions="References NoRawData L5KData DecoratedData Context Dependencies ForceProtectedEncoding AllProjDocTrans">
+<Controller Use="Context" Name="simObli1_rev_1">
+<DataTypes Use="Context">
+</DataTypes>
+<Tags Use="Context">
+<Tag Name="AC_1" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Kompressoren er tændt/slukket]]>
+</Description>
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="H1_opvarmer" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="V_100" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0.00000000e+000]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="REAL" Radix="Float" Value="0.0"/>
+</Data>
+</Tag>
+<Tag Name="V_101" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="V_102" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[1]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="1"/>
+</Data>
+</Tag>
+<Tag Name="V_103" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="V_104" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[1]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="1"/>
+</Data>
+</Tag>
+<Tag Name="V_105" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0.00000000e+000]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="REAL" Radix="Float" Value="0.0"/>
+</Data>
+</Tag>
+<Tag Name="V_106" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0.00000000e+000]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="REAL" Radix="Float" Value="0.0"/>
+</Data>
+</Tag>
+<Tag Name="V_107" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="V_108" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[1]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="1"/>
+</Data>
+</Tag>
+<Tag Name="V_11" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="V_12" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="V_13" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[1]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="1"/>
+</Data>
+</Tag>
+<Tag Name="V_14" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+<Tag Name="Valves_off" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[0]]>
+</Data>
+<Data Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</Data>
+</Tag>
+</Tags>
+<Programs Use="Context">
+<Program Use="Context" Name="MS1_2_Function">
+<Routines Use="Context">
+<Routine Use="Target" Name="Shutdown" Type="ST">
+<Description>
+<![CDATA[MainTask --> MS1_2_Function
+
+Slukker for H1-opvarmer, lukker alle ventiler og slukker kompressoren.]]>
+</Description>
+<STContent>
+<Line Number="0">
+<![CDATA[// All valves are closed in First Pass]]>
+</Line>
+<Line Number="1">
+<![CDATA[// Rutine kan also be run with RESET]]>
+</Line>
+<Line Number="2">
+<![CDATA[// Globale Tags]]>
+</Line>
+<Line Number="3">
+<![CDATA[// ]]>
+</Line>
+<Line Number="4">
+<![CDATA[V_11 := 0;]]>
+</Line>
+<Line Number="5">
+<![CDATA[V_12 := 0;]]>
+</Line>
+<Line Number="6">
+<![CDATA[V_13 := 0;]]>
+</Line>
+<Line Number="7">
+<![CDATA[V_14 := 0;]]>
+</Line>
+<Line Number="8">
+<![CDATA[V_100:= 0; // Also turned off in Trykregulering_PID when drift=0]]>
+</Line>
+<Line Number="9">
+<![CDATA[V_101 := 0;]]>
+</Line>
+<Line Number="10">
+<![CDATA[V_102 := 0;]]>
+</Line>
+<Line Number="11">
+<![CDATA[V_103 := 0;]]>
+</Line>
+<Line Number="12">
+<![CDATA[V_104 := 0;]]>
+</Line>
+<Line Number="13">
+<![CDATA[V_105 := 0; // Also turned off in heat_reg when drift = 0]]>
+</Line>
+<Line Number="14">
+<![CDATA[V_106 := 0; // Also turned of in heat_reg when drift = 0]]>
+</Line>
+<Line Number="15">
+<![CDATA[V_107 := 0;]]>
+</Line>
+<Line Number="16">
+<![CDATA[V_108 := 0;]]>
+</Line>
+<Line Number="17">
+<![CDATA[Valves_off := 0;]]>
+</Line>
+<Line Number="18">
+<![CDATA[]]>
+</Line>
+<Line Number="19">
+<![CDATA[// Turn off heater H1]]>
+</Line>
+<Line Number="20">
+<![CDATA[H1_opvarmer :=0;]]>
+</Line>
+<Line Number="21">
+<![CDATA[]]>
+</Line>
+<Line Number="22">
+<![CDATA[// Turns off compressor AC-1]]>
+</Line>
+<Line Number="23">
+<![CDATA[AC_1 :=0;]]>
+</Line>
+</STContent>
+</Routine>
+</Routines>
+</Program>
+</Programs>
+</Controller>
+</RSLogix5000Content>
